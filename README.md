@@ -2,6 +2,8 @@
 
 **Python · Playwright · pytest · Page Object Model · REST API checks · Allure**
 
+[![Portfolio checks](https://github.com/VadymMazur/autotest_ui/actions/workflows/portfolio-checks.yml/badge.svg)](https://github.com/VadymMazur/autotest_ui/actions/workflows/portfolio-checks.yml)
+
 A focused automation sample by **Vadym Mazur**: one CRM lead journey, supported by reusable page objects, synthetic test data, API verification, guarded cleanup and failure diagnostics.
 
 This is a sanitized portfolio edition. You can run the unit tests and real Chromium checks against synthetic HTML without an account or CRM server. The application itself is not included; the full CRM scenario requires a compatible disposable local application and is excluded by default.
@@ -33,6 +35,8 @@ python -m pytest
 ```
 
 The default command runs unit tests and two browser tests on synthetic HTML. It does not load CRM credentials or connect to a CRM service. Dependencies and Chromium need internet access during installation.
+
+GitHub Actions runs the same self-contained checks on Ubuntu with Python 3.13 and Chromium. The badge above links to the actual runs; CI does not execute the optional CRM integration journey or require repository secrets.
 
 ```powershell
 # Fast checks without launching a browser
