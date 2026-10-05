@@ -1,0 +1,27 @@
+name: Portfolio checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-harness:
+    name: Unit tests and synthetic Chromium checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Verify dependency compatibility
+        run: python -m pip check
+      - name: Run self-contained tests (no CRM account or server)
+        run: python -m pytest tests/unit tests/browser --browser chromium
